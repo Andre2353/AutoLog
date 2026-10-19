@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-const MIN = 0
-const MAX = 50
+  const decrementoBloqueado = contador === MIN || contador - passo < MIN
+  const incrementoBloqueado = contador === MAX || contador + passo > MAX
 
 function Contador() {
   const [contador, setContador] = useState(0)
@@ -27,8 +27,8 @@ function Contador() {
         onChange={(e) => setPasso(Number(e.target.value))}
       />
 
-      <button onClick={decrementar}>- {passo}</button>
-      <button onClick={incrementar}>+ {passo}</button>
+     <button onClick={decrementar} disabled={decrementoBloqueado}>- {passo}</button>
+      <button onClick={incrementar} disabled={incrementoBloqueado}>+ {passo}</button>
     </div>
   )
 }
