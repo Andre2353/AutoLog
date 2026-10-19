@@ -1,5 +1,7 @@
+import Contador from "./componentes/Contador"
+
 function App() {
-  return <h1>Painel de Controle de Lotes</h1>
+  return <Contador/>
 }
 
 export default App
