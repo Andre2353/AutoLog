@@ -1,5 +1,8 @@
 import { useState } from 'react'
 
+const MIN = 0
+const MAX = 50
+
 function Contador() {
   const [contador, setContador] = useState(0)
   const [passo, setPasso] = useState(1)
