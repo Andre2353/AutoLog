@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import './Contador.css'
 
   const decrementoBloqueado = contador === MIN || contador - passo < MIN
   const incrementoBloqueado = contador === MAX || contador + passo > MAX
