@@ -3,7 +3,7 @@ import './Contador.css'
 
 const MIN = 0
 const MAX = 50
-const limite = 40
+const limitee = 40
 
 function Contador() {
   const [contador, setContador] = useState(0)
@@ -15,7 +15,7 @@ function Contador() {
 
   let status = 'normal'
   if (contador === MAX) status = 'completo'
-  else if (contador >= limite) status = 'alerta'
+  else if (contador >= limitee) status = 'alerta'
 
   function incrementar() {
     setContador(contador + passo)
