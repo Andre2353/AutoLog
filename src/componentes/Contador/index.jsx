@@ -3,7 +3,7 @@ import './Contador.css'
 
 const MIN = 0
 const MAX = 50
-const LIMITE_ALERTA = 40
+const limite = 40
 
 function Contador() {
   const [contador, setContador] = useState(0)
@@ -15,16 +15,23 @@ function Contador() {
 
   let status = 'normal'
   if (contador === MAX) status = 'completo'
-  else if (contador >= LIMITE_ALERTA) status = 'alerta'
+  else if (contador >= limite) status = 'alerta'
 
   function incrementar() {
-    if (contador + passo > MAX) return
     setContador(contador + passo)
   }
 
   function decrementar() {
-    if (contador - passo < MIN) return
     setContador(contador - passo)
+  }
+
+  function mudarPasso(e) {
+    let valor = Number(e.target.value)
+
+    if (!valor || valor < 1) valor = 1
+    if (valor > 10) valor = 10
+
+    setPasso(valor)
   }
 
   function finalizarLote() {
@@ -38,15 +45,11 @@ function Contador() {
     <div>
       <div className={`display display--${status}`}>
         <p>{contador} / {MAX} caixas</p>
-        {status === 'alerta' && <p>⚠️ Capacidade quase atingida</p>}
+        {status === 'alerta' && <p>Capacidade quase atingida</p>}
         {status === 'completo' && <span className="badge">Lote Fechado</span>}
       </div>
 
-      <input
-        type="number"
-        value={passo}
-        onChange={(e) => setPasso(Number(e.target.value))}
-      />
+      <input type="number" value={passo} onChange={mudarPasso} />
 
       <button onClick={decrementar} disabled={decrementoBloqueado}>- {passo}</button>
       <button onClick={incrementar} disabled={incrementoBloqueado}>+ {passo}</button>
@@ -54,9 +57,7 @@ function Contador() {
 
       <p>
         Último lote finalizado:{' '}
-        <strong>
-          {ultimoLoteRegistrado !== null ? `${ultimoLoteRegistrado} caixas` : 'nenhum registro'}
-        </strong>
+        {ultimoLoteRegistrado !== null ? `${ultimoLoteRegistrado} caixas` : 'nenhum registro'}
       </p>
     </div>
   )
